@@ -1,6 +1,5 @@
 # Архитектура сетей
-
-
+## Описание домашнего задания
 1. Скачать и развернуть Vagrant-стенд
 (https://github.com/erlong15/otus-linux/tree/network)
 2. Построить следующую сетевую архитектуру:
@@ -52,4 +51,5 @@ root@yarkozloff:/otus/netlab# vboxmanage --version
 root@yarkozloff:/otus/netlab# vagrant --version
 Vagrant 2.2.19
 ```
-## Теоритическая часть
+## Теоретическая часть
+Из имеющихся данных рассчитываем все сети:
