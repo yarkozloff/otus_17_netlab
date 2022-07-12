@@ -58,4 +58,13 @@ Vagrant 2.2.19
 Из имеющихся данных рассчитываем все сети:
 (IP калькулятор - https://ip-calculator.ru/)
 + Подсчитаем свободные сети:
-![image](https://user-images.githubusercontent.com/69105791/178351343-d5b985db-9aa0-4e4a-a745-25eeaa09375e.png)
+![image](https://user-images.githubusercontent.com/69105791/178373670-2dd199a3-b7f0-4f6b-b577-548ae6320a4f.png)
+
+## Практическая часть
+Построим полную схему сети:
+![image](https://user-images.githubusercontent.com/69105791/178373790-eac98209-b5e0-413f-ae9a-ee01c17d2aff.png)
+
+Подготовим список серверов:
+![image](https://user-images.githubusercontent.com/69105791/178376945-d7f9f46d-cb67-47ee-a6d5-94b3fd3b252f.png)
+
+
