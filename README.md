@@ -18,7 +18,7 @@
 Сеть central
 - 192.168.0.0/28 - directors
 - 192.168.0.32/28 - office hardware
-- 192.168.0.64/26 - wif
+- 192.168.0.64/26 - wifi
 
 Сеть InetRouter
 - 192.168.255.0/30 - inet central
