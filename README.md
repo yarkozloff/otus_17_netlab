@@ -62,6 +62,7 @@ Vagrant 2.2.19
 
 ## Практическая часть
 Построим полную схему сети:
+
 ![image](https://user-images.githubusercontent.com/69105791/178373790-eac98209-b5e0-413f-ae9a-ee01c17d2aff.png)
 
 Подготовим список серверов:
