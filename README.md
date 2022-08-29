@@ -41,8 +41,8 @@
 - У всех новых серверов отключить дефолт на NAT (eth0), который
 vagrant поднимает для связи
 - Добавить дополнительные сетевые интерфейсы, если потребуется
-Рекомендуется использовать Vagrant + Ansible для настройки
-данной схемы.
+
+Рекомендуется использовать Vagrant + Ansible для настройки данной схемы.
 
 ## Подготовка
 Проверка версий среды:
@@ -52,7 +52,7 @@ root@yarkozloff:/otus/netlab# hostnamectl | grep "Operating System"
 root@yarkozloff:/otus/netlab# vboxmanage --version
 6.1.26_Ubuntur145957
 root@yarkozloff:/otus/netlab# vagrant --version
-Vagrant 2.2.19
+Vagrant 2.3.0
 ```
 ## Теоретическая часть
 Из имеющихся данных рассчитываем все сети:
@@ -76,4 +76,5 @@ Vagrant 2.2.19
 - 192.168.255.192/26
 
 ## Практическая часть
-Добавляем в Vagrantfile дополнительные машины: Office1serv, Office1router, Office2router, Office2server. Убираем  NAT на всех узлах, кроме Inetrouter. Добавляем конфигурацию интерфейсов ВМ шлюзы. В параметрах ядра изменяем net.ipv4.conf.all.forwarding=1. Отключаем маршрут по умолчанию. echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0. Добавляем дефолтный маршрут на другой порт.
+Добавляем в Vagrantfile дополнительные машины: Office1serv, Office1router, Office2router, Office2server. Убираем  NAT на всех узлах, кроме Inetrouter. Добавляем конфигурацию интерфейсов ВМ шлюзы. В параметрах ядра изменяем net.ipv4.conf.all.forwarding=1. Отключаем маршрут по умолчанию. echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0. Добавляем дефолтный маршрут на другой порт. Настраиваем статические маршруты. 
+### Тестирование
