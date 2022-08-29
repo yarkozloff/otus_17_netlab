@@ -76,7 +76,7 @@ Vagrant 2.3.0
 
 ## Практическая часть
 Добавляем в Vagrantfile дополнительные машины: Office1serv, Office1router, Office2router, Office2server. Убираем  NAT на всех узлах, кроме Inetrouter. Добавляем конфигурацию интерфейсов ВМ шлюзы. В параметрах ядра изменяем net.ipv4.conf.all.forwarding=1. Отключаем маршрут по умолчанию. echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0. Добавляем дефолтный маршрут на другой порт. Настраиваем статические маршруты. 
-### Тестирование
+### Проверка настроек
 Для примера подключимся к машине office2Server и посмотрим конфгурацию таблицы маршрутизации:
 ```
 [root@office2Server ~]# ip r
