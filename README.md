@@ -87,3 +87,38 @@ default via 192.168.3.1 dev eth1 proto static metric 101
 192.168.50.0/24 dev eth2 proto kernel scope link src 192.168.50.31 metric 102
 192.168.255.4/30 via 192.168.3.129 dev eth1 proto static metric 101
 ```
+- 192.168.255.4/30 - маска подсети 
+- 192.168.3.129 - указывает через какой шлюз мы можем добраться до цели, именно он указан в office2Router
+- proto static — означает, что маршрут был установлен администратором
+
+Маршрутизация на сервере office2Router
+```
+[root@office2Router ~]# ip r
+default via 192.168.255.5 dev eth1 proto static metric 101
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100
+192.168.3.0/25 dev eth2 proto kernel scope link src 192.168.3.1 metric 102
+192.168.3.128/26 dev eth3 proto kernel scope link src 192.168.3.129 metric 103
+192.168.3.192/26 dev eth4 proto kernel scope link src 192.168.3.193 metric 104
+192.168.10.0/28 via 192.168.255.5 dev eth1 proto static metric 101
+192.168.50.0/24 dev eth5 proto kernel scope link src 192.168.50.30 metric 105
+192.168.255.0/30 via 192.168.255.5 dev eth1 proto static metric 101
+192.168.255.4/30 dev eth1 proto kernel scope link src 192.168.255.6 metric 101
+192.168.255.8/30 via 192.168.255.5 dev eth1 proto static metric 101
+```
+Маршрутизация на сервере inetRouter:
+```
+[root@inetRouter ~]# ip r
+default via 10.0.2.2 dev eth0 proto dhcp metric 100
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100
+192.168.50.0/24 dev eth2 proto kernel scope link src 192.168.50.10 metric 102
+192.168.255.0/30 dev eth1 proto kernel scope link src 192.168.255.1 metric 101
+```
+При пинге от office2Server к inetRouter через tcpdump наблюдаем трафик с ip office2Server:
+```
+[root@inetRouter ~]# tcpdump -i eth2
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth2, link-type EN10MB (Ethernet), capture size 262144 bytes
+20:43:13.674814 IP 192.168.50.31 > RZD-ARIS.vDRSK.digdes.com: ICMP echo request, id 23562, seq 1, length 64
+20:43:13.674837 IP RZD-ARIS.vDRSK.digdes.com > 192.168.50.31: ICMP echo reply, id 23562, seq 1, length 64
+20:43:14.675665 IP 192.168.50.31 > RZD-ARIS.vDRSK.digdes.com: ICMP echo request, id 23562, seq 2, length 64
+```
