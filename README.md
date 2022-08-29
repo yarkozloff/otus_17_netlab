@@ -38,8 +38,7 @@
 роутинг
 - Интернет-трафик со всех серверов должен ходить через inetRouter
 - Все сервера должны видеть друг друга (должен проходить ping)
-- У всех новых серверов отключить дефолт на NAT (eth0), который
-vagrant поднимает для связи
+- У всех новых серверов отключить дефолт на NAT (eth0), который vagrant поднимает для связи
 - Добавить дополнительные сетевые интерфейсы, если потребуется
 
 Рекомендуется использовать Vagrant + Ansible для настройки данной схемы.
@@ -78,3 +77,13 @@ Vagrant 2.3.0
 ## Практическая часть
 Добавляем в Vagrantfile дополнительные машины: Office1serv, Office1router, Office2router, Office2server. Убираем  NAT на всех узлах, кроме Inetrouter. Добавляем конфигурацию интерфейсов ВМ шлюзы. В параметрах ядра изменяем net.ipv4.conf.all.forwarding=1. Отключаем маршрут по умолчанию. echo "DEFROUTE=no" >> /etc/sysconfig/network-scripts/ifcfg-eth0. Добавляем дефолтный маршрут на другой порт. Настраиваем статические маршруты. 
 ### Тестирование
+Для примера подключимся к машине office2Server и посмотрим конфгурацию таблицы маршрутизации:
+```
+[root@office2Server ~]# ip r
+default via 192.168.3.1 dev eth1 proto static metric 101
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15 metric 100
+192.168.3.0/25 dev eth1 proto kernel scope link src 192.168.3.2 metric 101
+192.168.3.129 dev eth1 proto static scope link metric 101
+192.168.50.0/24 dev eth2 proto kernel scope link src 192.168.50.31 metric 102
+192.168.255.4/30 via 192.168.3.129 dev eth1 proto static metric 101
+```
